@@ -13,7 +13,17 @@ let data = [];
 fetch("data.json")
   .then(res => res.json())
   .then(json => {
-    data = json;
+   data = json.map(p => {
+  return {
+    nombre: p.nombre || p["nombre"] || p["apellido y nombre"] || "",
+    apellido: p.apellido || "",
+    dni: p.dni || p.documento || p["dni n°"] || "",
+    oficina: p.oficina || p.dependencia || p["lugar de trabajo"] || "",
+    direccion: p.direccion || "",
+    departamento: p.departamento || "",
+    circunscripcion: p.circunscripcion || ""
+  };
+});
   });
 
 const input=document.getElementById("search");
