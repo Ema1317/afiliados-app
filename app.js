@@ -1,8 +1,55 @@
 let data = [];
 
+let data = [];
+
 fetch("./data.json")
   .then(res => res.json())
   .then(json => {
+
+    const filas = json.PRIMERA;
+
+    data = filas.slice(1).map(p => {
+
+      const nombreCompleto = (p["Column3"] || p["Column3 "] || "").trim();
+      const partes = nombreCompleto.split(" ");
+
+      return {
+        nombre: partes.slice(1).join(" "),
+        apellido: partes[0] || "",
+        dni: (p["PRIMERA CIRCUNSCRIPCION"] || "").trim(),
+        oficina: (p["Column4"] || p["Column4 "] || "").trim(),
+        direccion: (p["Column5"] || p["Column5 "] || "").trim(),
+        departamento: (p["Column6"] || p["Column6 "] || "").trim(),
+        circunscripcion: "PRIMERA"
+      };
+    });
+
+    console.log("Datos cargados:", data);
+
+    // 🔥 activar búsqueda recién cuando cargan datos
+    activarBusqueda();
+  });
+
+function activarBusqueda() {
+  const input = document.getElementById("search");
+  const resultado = document.getElementById("resultado");
+
+  input.addEventListener("input", () => {
+    const valor = input.value.toLowerCase();
+
+    const filtrados = data.filter(p => {
+      if (modo === "dni") {
+        return (p.dni || "").includes(valor);
+      }
+      return (
+        (p.nombre || "").toLowerCase().includes(valor) ||
+        (p.apellido || "").toLowerCase().includes(valor)
+      );
+    });
+
+    render(filtrados);
+  });
+}
 
     const filas = json.PRIMERA;
 
