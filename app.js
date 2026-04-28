@@ -10,8 +10,11 @@ fetch("./data.json")
 
     data = filas.slice(1).map(p => {
 
-      const nombreCompleto = (p["Column3"] || p["Column3 "] || "").trim();
-      const partes = nombreCompleto.split(" ");
+     const nombreCompleto = (p["Column3"] || p["Column3 "] || "")
+  .trim()
+  .replace(/\s+/g, " "); // elimina espacios dobles
+
+const partes = nombreCompleto.split(" ");
 
       return {
         nombre: partes.slice(1).join(" "),
