@@ -8,7 +8,13 @@ document.getElementById("btnDni").classList.remove("active");
 document.getElementById(id).classList.add("active");
 }
 
-const data=[]; // PEGAR JSON AQUÍ
+let data = [];
+
+fetch("data.json")
+  .then(res => res.json())
+  .then(json => {
+    data = json;
+  });
 
 const input=document.getElementById("search");
 const resultado=document.getElementById("resultado");
