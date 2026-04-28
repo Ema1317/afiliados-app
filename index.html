@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Consulta de Afiliados</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+<div class="header">
+<p class="top">GREMIO JUDICIAL · MENDOZA</p>
+<h1>Consulta de <span>Afiliados</span></h1>
+<p class="sub">Padrón</p>
+</div>
+
+<div class="tabs">
+<button id="btnNombre" class="active">Por Nombre</button>
+<button id="btnDni">Por DNI</button>
+</div>
+
+<div class="searchBox">
+<input type="text" id="search" placeholder="Buscar...">
+</div>
+
+<div id="contador"></div>
+<div id="resultado"></div>
+</div>
+
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+ navigator.serviceWorker.register('service-worker.js');
+}
+</script>
+</body>
+</html>
