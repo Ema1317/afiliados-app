@@ -46,6 +46,8 @@ function activarBusqueda() {
       }
       return (
         (p.nombre || "").toLowerCase().includes(valor) ||
+(p.apellido || "").toLowerCase().includes(valor) ||
+(`${p.apellido} ${p.nombre}`.toLowerCase().includes(valor))
         (p.apellido || "").toLowerCase().includes(valor)
       );
     });
